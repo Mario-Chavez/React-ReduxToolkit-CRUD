@@ -7,6 +7,7 @@ const UserList = () => {
     const dispatch = useDispatch();
     // traemos del estado global de la app la list de usuario
     const { list } = useSelector((state) => state.users);
+    const {} = useSelector((state) => state.addUser);
 
     useEffect(() => {
         dispatch(fetchAllUser());

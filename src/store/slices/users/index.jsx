@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-    id: "",
-    email: "",
-    first_name: "",
-    last_name: "",
-    avatar: "",
+    id: "150",
+    email: "mario@gmail.com",
+    first_name: "mario alberto",
+    last_name: "chavez",
+    avatar: "avatar...dhghdgd....",
 };
 
 // slice de users lista de usuario
