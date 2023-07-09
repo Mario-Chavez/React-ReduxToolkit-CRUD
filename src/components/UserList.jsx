@@ -3,7 +3,7 @@ import { fetchAllUser } from "../store/slices/users";
 import { useDispatch, useSelector } from "react-redux";
 
 const UserList = () => {
-    const users = [];
+    // metodo dispatch paa poder usar el fetch all
     const dispatch = useDispatch();
     // traemos del estado global de la app la list de usuario
     const { list } = useSelector((state) => state.users);
