@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-    id: "150",
-    email: "mario@gmail.com",
-    first_name: "mario alberto",
-    last_name: "chavez",
-    avatar: "avatar...dhghdgd....",
+    id: "",
+    email: "",
+    first_name: "",
+    last_name: "",
+    avatar: "",
 };
 
 // slice de users lista de usuario
@@ -38,6 +38,13 @@ export const addUserSlice = createSlice({
             state.last_name = action.payload.last_name;
             state.avatar = action.payload.avatar;
         },
+        unSetUser: (state) => {
+            state.id = "";
+            state.email = "";
+            state.first_name = "";
+            state.last_name = "";
+            state.avatar = "";
+        },
     },
 });
 
@@ -48,7 +55,7 @@ export const { setUserList } = userSlice.actions;
 
 // Reducers y acciones del slice addUser
 export const addUserReducer = addUserSlice.reducer;
-export const { setUser } = addUserSlice.actions;
+export const { setUser, unSetUser } = addUserSlice.actions;
 
 // se usa dispatch para poder setear en el slice
 export const fetchAllUser = () => (dispatch) => {

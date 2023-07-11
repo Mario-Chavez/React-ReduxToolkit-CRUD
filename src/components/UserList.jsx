@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { fetchAllUser } from "../store/slices/users";
+import { fetchAllUser, setUser, unSetUser } from "../store/slices/users";
 import { useDispatch, useSelector } from "react-redux";
 
 const UserList = () => {
@@ -7,7 +7,6 @@ const UserList = () => {
     const dispatch = useDispatch();
     // traemos del estado global de la app la list de usuario
     const { list } = useSelector((state) => state.users);
-    const {} = useSelector((state) => state.addUser);
 
     useEffect(() => {
         dispatch(fetchAllUser());
@@ -28,6 +27,22 @@ const UserList = () => {
                     </div>
                 ))}
             </div>
+            <button
+                className="btn btn-primary"
+                onClick={() =>
+                    dispatch(
+                        setUser({
+                            id: "22222222",
+                            email: "isabella@gmail.com",
+                            first_name: "Isabella",
+                            last_name: "chavez",
+                            avatar: "isa avatar...dhghdgd....",
+                        })
+                    )
+                }
+            >
+                agregar
+            </button>
         </div>
     );
 };
