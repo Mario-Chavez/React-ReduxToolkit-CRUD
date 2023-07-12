@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
+// setuser y unSet user son reducer que hicimos en el slice de user
 import { fetchAllUser, setUser, unSetUser } from "../store/slices/users";
+// metodos de redux
 import { useDispatch, useSelector } from "react-redux";
 
 const UserList = () => {
     // metodo dispatch paa poder usar el fetch all
     const dispatch = useDispatch();
-    // traemos del estado global de la app la list de usuario
+
+    // traemos del estado global de la app la list de usuario[]
+    // asi se consume la informacio que tenemos en el estado de users, en este caso traemos el valor de lista de usuario
     const { list } = useSelector((state) => state.users);
 
     useEffect(() => {
@@ -42,6 +46,9 @@ const UserList = () => {
                 }
             >
                 agregar
+            </button>
+            <button className="btn btn-primary" onClick={() => dispatch(unSetUser())}>
+                eliminar
             </button>
         </div>
     );
