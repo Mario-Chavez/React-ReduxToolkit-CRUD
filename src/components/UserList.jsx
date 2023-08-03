@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 // setuser y unSet user son reducer que hicimos en el slice de user
-import { fetchAllUser, setUser, unSetUser, setOneUser } from "../store/slices/users";
+import {
+    fetchAllUser,
+    setUser,
+    unSetUser,
+    setOneUser,
+    setDeletUser,
+} from "../store/slices/users";
 import { v4 as uuid } from "uuid";
 // metodos de redux
 import { useDispatch, useSelector } from "react-redux";
@@ -32,6 +38,9 @@ const UserList = () => {
     const onSubmit = (data) => {
         dispatch(setOneUser({ ...data, id: uuid() }));
         reset();
+    };
+    const handleDelet = (id) => {
+        dispatch(setDeletUser(id));
     };
     return (
         <div className="container">
@@ -81,28 +90,23 @@ const UserList = () => {
             </Form>
             <div className="row">
                 {list.map((user) => (
-                    <div key={user.id} className="col-md-3">
-                        <div className="card ">
+                    <div key={user.id} className="col-md-3 my-2 ">
+                        <div className="card p-2">
                             <img src={user.avatar} alt="avatar" />
                             <div className="card-body">
                                 <h5 className="card-title">{`${user.first_name}${user.last_name}`}</h5>
                                 <h5 className="card-text">{`${user.email}`}</h5>
                             </div>
+                            <button
+                                className="btn btn-danger my-2"
+                                onClick={() => handleDelet(user.id)}
+                            >
+                                eliminar
+                            </button>
                         </div>
                     </div>
                 ))}
             </div>
-            {/* <button
-                className="btn btn-primary"
-                onClick={() =>
-                   
-                }
-            >
-                agregar
-            </button>
-            <button className="btn btn-primary" onClick={() => dispatch(unSetUser())}>
-                eliminar
-            </button> */}
         </div>
     );
 };

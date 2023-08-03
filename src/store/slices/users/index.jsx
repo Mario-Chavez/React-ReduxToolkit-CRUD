@@ -23,6 +23,13 @@ export const userSlice = createSlice({
         setOneUser: (state, action) => {
             state.list.push(action.payload);
         },
+        setDeletUser: (state, action) => {
+            const userFound = state.list.find((user) => user.id === action.payload);
+            if (userFound) {
+                // busca el indice y lo corta al array de usuarios
+                state.list.splice(state.list.indexOf(userFound), 1); //state.list.indexOf(userFound) es el idice de user en el  array
+            }
+        },
     },
 });
 
@@ -53,8 +60,8 @@ export const addUserSlice = createSlice({
 
 // exportamos para que lo pueda usar el configStore
 export const userSliceReducer = userSlice.reducer;
-// extraemos el setUser para ser usado en el fetchAllUsers
-export const { setUserList, setOneUser } = userSlice.actions;
+// exportamos los metodos del user slice
+export const { setUserList, setOneUser, setDeletUser } = userSlice.actions;
 
 // Reducers y acciones del slice addUser
 export const addUserReducer = addUserSlice.reducer;
