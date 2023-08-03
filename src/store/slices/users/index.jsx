@@ -20,6 +20,9 @@ export const userSlice = createSlice({
         setUserList: (state, action) => {
             state.list = action.payload;
         },
+        setOneUser: (state, action) => {
+            state.list.push(action.payload);
+        },
     },
 });
 
@@ -51,7 +54,7 @@ export const addUserSlice = createSlice({
 // exportamos para que lo pueda usar el configStore
 export const userSliceReducer = userSlice.reducer;
 // extraemos el setUser para ser usado en el fetchAllUsers
-export const { setUserList } = userSlice.actions;
+export const { setUserList, setOneUser } = userSlice.actions;
 
 // Reducers y acciones del slice addUser
 export const addUserReducer = addUserSlice.reducer;
