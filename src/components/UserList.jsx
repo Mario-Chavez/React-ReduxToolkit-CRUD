@@ -6,6 +6,7 @@ import {
     unSetUser,
     setOneUser,
     setDeletUser,
+    setEditUser,
 } from "../store/slices/users";
 import { v4 as uuid } from "uuid";
 // metodos de redux
@@ -38,6 +39,9 @@ const UserList = () => {
     const onSubmit = (data) => {
         dispatch(setOneUser({ ...data, id: uuid() }));
         reset();
+    };
+    const handleEdit = (id) => {
+        dispatch(setEditUser(id));
     };
     const handleDelet = (id) => {
         dispatch(setDeletUser(id));
@@ -102,6 +106,12 @@ const UserList = () => {
                                 onClick={() => handleDelet(user.id)}
                             >
                                 eliminar
+                            </button>
+                            <button
+                                className="btn btn-info my-2"
+                                onClick={() => handleEdit(user.id)}
+                            >
+                                edit
                             </button>
                         </div>
                     </div>

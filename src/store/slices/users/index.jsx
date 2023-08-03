@@ -23,6 +23,16 @@ export const userSlice = createSlice({
         setOneUser: (state, action) => {
             state.list.push(action.payload);
         },
+        setEditUser: (state, action) => {
+            const { email, first_name, last_name, avatar, id } = action.payload;
+            const userFound = state.list.find((user) => user.id === id);
+            if (userFound) {
+                (userFound.first_name = first_name),
+                    (userFound.last_name = last_name),
+                    (userFound.avatar = avatar),
+                    (userFound.email = email);
+            }
+        },
         setDeletUser: (state, action) => {
             const userFound = state.list.find((user) => user.id === action.payload);
             if (userFound) {
@@ -61,7 +71,7 @@ export const addUserSlice = createSlice({
 // exportamos para que lo pueda usar el configStore
 export const userSliceReducer = userSlice.reducer;
 // exportamos los metodos del user slice
-export const { setUserList, setOneUser, setDeletUser } = userSlice.actions;
+export const { setUserList, setOneUser, setDeletUser, setEditUser } = userSlice.actions;
 
 // Reducers y acciones del slice addUser
 export const addUserReducer = addUserSlice.reducer;
