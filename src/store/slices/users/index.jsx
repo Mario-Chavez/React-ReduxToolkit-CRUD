@@ -60,9 +60,10 @@ export const { setUser, unSetUser } = addUserSlice.actions;
 // se usa dispatch para poder setear en el slice
 export const fetchAllUser = () => (dispatch) => {
     axios
-        .get("https://reqres.in/api/users?per_page=12")
+        .get("http://localhost:3000/user")
         .then((respuesta) => {
-            dispatch(setUserList(respuesta.data.data));
+            // console.log(respuesta);
+            dispatch(setUserList(respuesta.data));
         })
         .catch((error) => console.log(error));
 };
