@@ -14,9 +14,7 @@ const UserList = () => {
     const { list } = useSelector((state) => state.users);
 
     useEffect(() => {
-        if (list.length <= 0) {
-            dispatch(fetchAllUser());
-        }
+        dispatch(fetchAllUser());
     }, []);
 
     const handleDelet = (id) => {

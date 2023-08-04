@@ -46,28 +46,28 @@ export const userSlice = createSlice({
 
 // agregar un ususario nuevo
 // Slice para agregar un nuevo usuario
-export const addUserSlice = createSlice({
-    name: "addUser",
-    initialState: {
-        user: initialState,
-    },
-    reducers: {
-        setUser: (state, action) => {
-            state.id = action.payload.id;
-            state.email = action.payload.email;
-            state.first_name = action.payload.first_name;
-            state.last_name = action.payload.last_name;
-            state.avatar = action.payload.avatar;
-        },
-        unSetUser: (state) => {
-            state.id = "";
-            state.email = "";
-            state.first_name = "";
-            state.last_name = "";
-            state.avatar = "";
-        },
-    },
-});
+// export const addUserSlice = createSlice({
+//     name: "addUser",
+//     initialState: {
+//         user: initialState,
+//     },
+//     reducers: {
+//         setUser: (state, action) => {
+//             state.id = action.payload.id;
+//             state.email = action.payload.email;
+//             state.first_name = action.payload.first_name;
+//             state.last_name = action.payload.last_name;
+//             state.avatar = action.payload.avatar;
+//         },
+//         unSetUser: (state) => {
+//             state.id = "";
+//             state.email = "";
+//             state.first_name = "";
+//             state.last_name = "";
+//             state.avatar = "";
+//         },
+//     },
+// });
 
 // exportamos para que lo pueda usar el configStore
 export const userSliceReducer = userSlice.reducer;
@@ -75,8 +75,8 @@ export const userSliceReducer = userSlice.reducer;
 export const { setUserList, setOneUser, setDeletUser, setEditUser } = userSlice.actions;
 
 // Reducers y acciones del slice addUser
-export const addUserReducer = addUserSlice.reducer;
-export const { setUser, unSetUser } = addUserSlice.actions;
+// export const addUserReducer = addUserSlice.reducer;
+// export const { setUser, unSetUser } = addUserSlice.actions;
 
 // se usa dispatch para poder setear en el slice
 export const fetchAllUser = () => (dispatch) => {
@@ -96,3 +96,12 @@ export const fetchPostUser = (data) => (dispatch) => {
         })
         .catch((error) => console.log(error));
 };
+// Proximo a ver como interactuar con una db
+// export const fetchEditUser = (data, id) => (dispatch) => {
+//     axios
+//         .put(`http://localhost:3000/user/${id}`, data)
+//         .then((respuesta) => {
+//             dispatch(setUserList(respuesta.data));
+//         })
+//         .catch((error) => console.log(error));
+// };
