@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // setuser y unSet user son reducer que hicimos en el slice de user
 import { fetchAllUser, setDeletUser, setEditUser } from "../store/slices/users";
-import { v4 as uuid } from "uuid";
+
 // metodos de redux
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -14,7 +14,9 @@ const UserList = () => {
     const { list } = useSelector((state) => state.users);
 
     useEffect(() => {
-        dispatch(fetchAllUser());
+        if (list.length <= 0) {
+            dispatch(fetchAllUser());
+        }
     }, []);
 
     const handleDelet = (id) => {
@@ -29,7 +31,7 @@ const UserList = () => {
                         <div className="card p-2">
                             <img src={user.avatar} alt="avatar" />
                             <div className="card-body">
-                                <h5 className="card-title">{`${user.first_name}${user.last_name}`}</h5>
+                                <h5 className="card-title">{`${user.first_name}  ${user.last_name}`}</h5>
                                 <h5 className="card-text">{`${user.email}`}</h5>
                             </div>
                             <button

@@ -1,13 +1,14 @@
-import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { setOneUser, setEditUser } from "../store/slices/users";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { v4 as uuid } from "uuid";
 
 const Formulario = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const params = useParams();
     const listUser = useSelector((state) => state.users);
 
@@ -21,7 +22,7 @@ const Formulario = () => {
     } = useForm();
 
     useEffect(() => {
-        if (params) {
+        if (params.id) {
             const userFound = listUser.list.find((user) => user.id == params.id);
             setValue("first_name", userFound.first_name);
             setValue("last_name", userFound.last_name);
@@ -31,10 +32,12 @@ const Formulario = () => {
     }, []);
 
     const onSubmit = (data) => {
+        // si hay params se edita , sino se crea
         params.id
             ? dispatch(setEditUser({ ...data, id: params.id }))
             : dispatch(setOneUser({ ...data, id: uuid() }));
         reset();
+        navigate("/list");
     };
 
     return (
