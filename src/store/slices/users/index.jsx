@@ -24,6 +24,7 @@ export const userSlice = createSlice({
             state.list.push(action.payload);
         },
         setEditUser: (state, action) => {
+            console.log(action.payload);
             const { email, first_name, last_name, avatar, id } = action.payload;
             const userFound = state.list.find((user) => user.id === id);
             if (userFound) {

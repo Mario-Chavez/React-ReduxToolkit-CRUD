@@ -31,11 +31,10 @@ const Formulario = () => {
     }, []);
 
     const onSubmit = (data) => {
-        dispatch(setOneUser({ ...data, id: uuid() }));
+        params.id
+            ? dispatch(setEditUser({ ...data, id: params.id }))
+            : dispatch(setOneUser({ ...data, id: uuid() }));
         reset();
-    };
-    const handleEdit = (id) => {
-        dispatch(setEditUser(id));
     };
 
     return (
