@@ -88,13 +88,10 @@ export const fetchAllUser = () => (dispatch) => {
         })
         .catch((error) => console.log(error));
 };
-export const fetchPostUser = () => (dispatch, data) => {
+export const fetchPostUser = (data) => (dispatch) => {
     axios
-        .post("http://localhost:3000/user", {
-            data,
-        })
+        .post("http://localhost:3000/user", data)
         .then((respuesta) => {
-            // console.log(respuesta);
             dispatch(setUserList(respuesta.data));
         })
         .catch((error) => console.log(error));

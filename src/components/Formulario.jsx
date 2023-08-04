@@ -1,7 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { setOneUser, setEditUser } from "../store/slices/users";
+import { setOneUser, setEditUser, fetchPostUser } from "../store/slices/users";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
@@ -37,6 +37,7 @@ const Formulario = () => {
             ? dispatch(setEditUser({ ...data, id: params.id }))
             : dispatch(setOneUser({ ...data, id: uuid() }));
         reset();
+        dispatch(fetchPostUser(data));
         navigate("/list");
     };
 
